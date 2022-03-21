@@ -9,27 +9,29 @@
 <h1>This is a Glia Salesforce dev testing page</h1>
 <p>Visitor side.</p>
 
-<form onsubmit="updateVisitor()">
+<form>
   <label for="visitorName">Name:</label><br>
   <input type="text" id="visitorName" name="visitorName"><br>
   <label for="externalId">externalId:</label><br>
-  <input type="text" id="externalId" name="externalId">
-  <label for="customAttrKey">externalId:</label><br>
-  <input type="text" id="customAttrKey" name="customAttrKey">
-  <label for="customAttrValue">externalId:</label><br>
+  <input type="text" id="externalId" name="externalId"><br>
+  <label for="customAttrKey">Custom Attribute Key:</label><br>
+  <input type="text" id="customAttrKey" name="customAttrKey"><br>
+  <label for="customAttrValue">Custom Attribute Value:</label><br>
   <input type="text" id="customAttrValue" name="customAttrValue">
 </form>
-<button onclick="updateVisitor()">Update</button>
+<button onclick="updateVisitor();">Update</button>
 
 <script type="text/javascript">
 function updateVisitor(){
 	sm.getApi({version: 'v1'}).then(function(glia) {
+  
+    var customAttr = {};
+  	customAttr[document.getElementById("customAttrKey").value] = document.getElementById("customAttrValue").value;
+    
     glia.updateInformation({
-      name: document.getElementById("visitorName").value ,
-      externalId: document.getElementById("externalId").value ,
-      customAttributes: {
-        document.getElementById("customAttrKey").value : document.getElementById("customAttrValue").value //only attribute "source" will remain
-      }
+      name: document.getElementById("visitorName").value,
+      externalId: document.getElementById("externalId").value,
+      customAttributes: customAttr
     }).then(function() {
       
     }).catch(function(error) {
@@ -41,7 +43,6 @@ function updateVisitor(){
     });
   });
 }
-
 </script>
 
 </body>
