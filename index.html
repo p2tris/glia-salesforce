@@ -10,10 +10,14 @@
 <p>Visitor side.</p>
 
 <form onsubmit="updateVisitor()">
-  <label for="fname">Name:</label><br>
-  <input type="text" id="fname" name="fname"><br>
+  <label for="visitorName">Name:</label><br>
+  <input type="text" id="visitorName" name="visitorName"><br>
   <label for="externalId">externalId:</label><br>
   <input type="text" id="externalId" name="externalId">
+  <label for="customAttrKey">externalId:</label><br>
+  <input type="text" id="customAttrKey" name="customAttrKey">
+  <label for="customAttrValue">externalId:</label><br>
+  <input type="text" id="customAttrValue" name="customAttrValue">
 </form>
 <button onclick="updateVisitor()">Update</button>
 
@@ -21,10 +25,10 @@
 function updateVisitor(){
 	sm.getApi({version: 'v1'}).then(function(glia) {
     glia.updateInformation({
-      name: document.getElementById("fname").value ,
+      name: document.getElementById("visitorName").value ,
       externalId: document.getElementById("externalId").value ,
       customAttributes: {
-        source: 'search' //only attribute "source" will remain
+        document.getElementById("customAttrKey").value : document.getElementById("customAttrValue").value //only attribute "source" will remain
       }
     }).then(function() {
       
