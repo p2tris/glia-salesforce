@@ -14,11 +14,12 @@
   <input type="text" id="fname" name="fname"><br>
   <label for="externalId">externalId:</label><br>
   <input type="text" id="externalId" name="externalId">
-  <input type="submit">
 </form>
+<button onclick="updateVisitor()">Update</button>
 
 <script type="text/javascript">
-var updateVisitor = sm.getApi({version: 'v1'}).then(function(glia) {
+function updateVisitor(){
+	sm.getApi({version: 'v1'}).then(function(glia) {
     glia.updateInformation({
       name: document.getElementById("fname").value ,
       externalId: document.getElementById("externalId").value ,
@@ -35,6 +36,8 @@ var updateVisitor = sm.getApi({version: 'v1'}).then(function(glia) {
       }
     });
   });
+}
+
 </script>
 
 </body>
