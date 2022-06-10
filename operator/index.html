@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <script type="text/javascript">
+      window.sm={};
+ // preloadedCurrentOperator start
+      sm.preloadedCurrentOperator = { PASTE THE SM PRELOADEDCURRENTOPERATOR HERE};
+
+
+ // sm.conf start
+      sm.conf = { PASTE THE SM.CONF HERE };
+
+      // code start
+      window.sm.ready = (function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0],
+          apiReady = window.sm.ready || {};
+        if (d.getElementById(id)) return apiReady;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://libs.salemove.com/operator_api-UPDATEHERE.js";
+        js.setAttribute("platform", "omnibrowse");
+        js.onload = function() {
+          window.sm.startApi({
+            sessionToken: "PASTE THE SESSION TOKEN HERE"
+          });
+        };
+        fjs.parentNode.insertBefore(js, fjs);
+
+        window.sm._apiHandlers = [];
+        apiReady = function(f) {
+          window.sm._apiHandlers.push(f);
+        };
+        return apiReady;
+      }(document, "script", "salemove-api"));
+    </script>
+  </head>
+  <body>
+    tere
+    <script type="text/javascript">
+      window.sm.ready(function(api) {
+        window.gliaApi = api;
+        console.log('Api loaded!');
+      });
+    </script>
+  </body>
+</html>
